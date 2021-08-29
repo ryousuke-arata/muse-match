@@ -2,11 +2,13 @@
 <html lang="ja">
 <head>
     @include('components.head')
-    @php
-        $keys = array_keys($fav_counts);
-        $key = max($keys);
-        $count = 0;
-    @endphp
+    @if($fav_counts !== '')
+      @php
+          $keys = array_keys($fav_counts);
+          $key = max($keys);
+          $count = 0;
+      @endphp
+    @endif
 </head>
 <body>
     <header>

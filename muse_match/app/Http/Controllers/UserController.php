@@ -21,7 +21,7 @@ class UserController extends Controller
         $person = new Person;
         Person::createSave($request, $person);
         $session = session()->get('login_user');
-        return view('user.user-top', ['session' => $session, 'posts' => '', 'url' => $url, 'fav_counts' => 0]);
+        return view('user.user-top', ['session' => $session, 'posts' => '', 'url' => $url, 'fav_counts' => '']);
     }
     ///////////////////////////
 

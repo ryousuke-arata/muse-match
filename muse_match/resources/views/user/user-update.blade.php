@@ -32,3 +32,4 @@
           </tr>
         </table>
 @endsection
+@include('components.user-footer')
