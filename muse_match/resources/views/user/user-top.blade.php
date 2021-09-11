@@ -64,12 +64,6 @@
         @endforeach
     </div>
     @endisset
-    <div class="follow-btn">
-        <form action='http://localhost:81/muse_match/public/user-page/{{$session->id}}' method="post">
-            @csrf
-            <input type="submit" name="follow" hidden="{{$session->id}}" value="フォロー">
-        </form>
-    </div>
 
     @include('components.user-footer')
 </body>

@@ -7,7 +7,7 @@
 @section('form')
   <main>
     <div class="form-area">
-      <form action="http://localhost:81/muse_match/public/user-update-top" method="post">
+      <form action="https://muse.hitomisiri-riara.com/user-update-top" method="post">
         @csrf
         <table>
           <tr>

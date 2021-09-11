@@ -6,7 +6,7 @@
 
 @section('content')
     @parent
-    @section('action', "http://localhost:81/muse_match/public/new-posts")
+    @section('action', "https://muse.hitomisiri-riara.com/new-posts")
     @section('form')
         <tr>
             <th>投稿タイトル</th>

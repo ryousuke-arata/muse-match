@@ -20,7 +20,7 @@
     <div class="posts-area">
     @foreach ($posts as $post)
      @while ($count <= $key)
-      <a href="http://localhost:81/muse_match/public/post-single-{{$post->id}}">
+      <a href="https://muse.hitomisiri-riara.com/post-single-{{$post->id}}">
         <div class="post-item">
             <div class="post-user-id">
                 <h2>{{$post->person_name}}</h2>

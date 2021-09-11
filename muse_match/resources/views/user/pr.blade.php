@@ -7,7 +7,7 @@
 @section('content')
     @parent
     @section('form')
-        @section('action', 'http://localhost:81/muse_match/public/pr-update-top')
+        @section('action', 'https://muse.hitomisiri-riara.com/pr-update-top')
         <tr>
             <th>自己PR</th>
             <td><textarea name="pr" id="pr" cols="30" rows="10">
