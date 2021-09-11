@@ -18,11 +18,9 @@ $followNamespace = 'App\Http\Controllers\FollowController@';
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('index', $postNamespace . 'no_user_index');
+
+Route::get('/', $postNamespace . 'no_user_index');
 
 Route::get('posts', $postNamespace . 'index');
 

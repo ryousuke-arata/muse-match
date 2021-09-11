@@ -7,14 +7,10 @@
 @section('content')
     @parent
     @section('form')
-        @section('action', 'https://muse.hitomisiri-riara.com/pr-update-top')
+        @section('action', 'http://localhost:81/muse_match/public/pr-update-top')
         <tr>
             <th>自己PR</th>
-            <td><textarea name="pr" id="pr" cols="30" rows="10">
-                @isset($session->pr)
-                  {{$session->pr}}
-                @endisset
-                </textarea>
+            <td><textarea name="pr" id="pr" cols="30" rows="10">@isset($session->pr){{$session->pr}}@endisset</textarea>
             </td>
         </tr>
         <tr>
