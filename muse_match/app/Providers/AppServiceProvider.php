@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class Provider extends ServiceProvider
+class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -23,9 +23,6 @@ class Provider extends ServiceProvider
      */
     public function boot()
     {
-        if (\App::environment('production')) {
-            \URL::forceScheme('https');
-        }
         //
     }
 }

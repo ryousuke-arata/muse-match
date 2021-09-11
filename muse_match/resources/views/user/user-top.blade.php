@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     @include('components.head')
-    @if($fav_counts !== '')
+    @if($fav_counts != null)
       @php
           $keys = array_keys($fav_counts);
           $key = max($keys);
@@ -32,13 +32,10 @@
         </tr>
     </table>
     
-    @if ($posts != '')
+    @isset ($posts)
     <div class="posts-area">
         @foreach ($posts as $post)
            @while ($count <= $key)
-              @if ($url != "https://muse-match.hitomisiri-riara.com/user-top")
-                <a href="https://muse-match.hitomisiri-riara.com/messages/{{$post->id}}">
-              @endif
                   <div class="post-item">
                      <div class="post-title">
                         <h3><span>タイトル： </span>{{$post->title}}</h3>
@@ -63,15 +60,12 @@
                         $count++;   
                      @endphp
                   </div>
-               @if ($url != "https://muse-match.hitomisiri-riara.com/user-top")
-                 </a>
-               @endif
             @endwhile
         @endforeach
     </div>
-    @endif
+    @endisset
     <div class="follow-btn">
-        <form action='https://muse-match.hitomisiri-riara.com/user-page/{{$session->id}}' method="post">
+        <form action='http://localhost:81/muse_match/public/user-page/{{$session->id}}' method="post">
             @csrf
             <input type="submit" name="follow" hidden="{{$session->id}}" value="フォロー">
         </form>

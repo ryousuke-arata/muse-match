@@ -1,13 +1,13 @@
 @extends('layouts.users')
 
 @section('header')
-   @include('components.user-header', ['link' => 'https://muse-match.hitomisiri-riara.com/login', 'text' => 'ログイン'])
+   @include('components.user-header', ['link' => 'http://localhost:81/muse_match/public/login', 'text' => 'ログイン'])
 @endsection
 
 @section('form')
 <main>
     <div class="form-area">
-      <form action="https://muse-match.hitomisiri-riara.com/new-top" method="post">
+      <form action="http://localhost:81/muse_match/public/new-top" method="post">
         @csrf
         <table>
           <tr>

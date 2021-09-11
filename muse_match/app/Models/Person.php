@@ -93,7 +93,6 @@ class Person extends Model
                 'id' => $request->id,
                 'mail' => $request->mail,
                 'name' => $request->name,
-                'ins' => $request->ins,
                 'pass' => $session->pass,
                 'pr' => $session->pr,
             ];
@@ -111,8 +110,23 @@ class Person extends Model
         session()->put('login_user', $data);
     }
 
-    public static function sessionCheck($link, $request, $session, $posts)
+    public static function loginCheck($session, $request) {
+        if($session == NULL) {
+            return view("user.user-login", ["url", $request->url()]);
+        }
+        exit();
+    }
+
+    public static function sessionCheck($link, $request, $session)
     {
+      
+      if(isset($session)) {
+        $id = self::with('posts')->where('id', $session->id)->where('mail', $session->mail)->first();
+        $posts = $id->posts;
+      } elseif($session == null) {
+        return view('user.user-login', ['url' => $request->url()]);
+        exit;
+      }
       if(isset($posts)) {
         $fav_counts = [];
         foreach($posts as $post) {
@@ -125,20 +139,17 @@ class Person extends Model
             'posts' => $posts,
             'fav_counts' => $fav_counts,
         ];
-      } else {
+        return view($link, $param);
+
+      } elseif($posts == null) {
         $param = [
             'session' => $session,
             'url' => $request->url(),
             'posts' => $posts,
             'fav_counts' => null,
         ];
+        return view($link, $param);
       }
-
-        if(isset($session)) {
-            return view($link, $param);
-        } else {
-            return view('user.user-login', ['url' => $url]);
-        }
     }
 
 }

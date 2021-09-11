@@ -39,8 +39,6 @@
       </main>
     @show
 
-    @section('footer')
-        @include('components.user-footer')
-    @show
+    @yield('footer')
 </body>
 </html>

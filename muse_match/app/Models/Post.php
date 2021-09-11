@@ -49,10 +49,10 @@ class Post extends Model
 
     public static function indexFavGet($posts)
     {
-        $fav_count = [];
+        $fav_count = array();
         foreach ($posts as $post) {
             $fav = DB::table('favs')->where('post_id', $post->id)->first();
-            $fav_count[] += $fav->fav_count;
+            array_push($fav_count, $fav->fav_count);
         }
         return $fav_count;
     }

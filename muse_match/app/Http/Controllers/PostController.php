@@ -40,9 +40,10 @@ class PostController extends Controller
 
     public function post_new_post(Request $request)
     {
+        $session = session()->get('login_user');
         $url = $request->url();
         $post = Post::newPost($request);
-        return view('post.post-single', ['post' => $post, 'url' => $url]);
+        return view('post.post-single', ['post' => $post, 'url' => $url, 'session' => $session]);
     }
 ///////////////////////////////////////////////////////////
 

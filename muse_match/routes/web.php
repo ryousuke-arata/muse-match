@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 
-$userNamespace = 'App\Http\Controllers\UserController@';
+$personNamespace = 'App\Http\Controllers\PersonController@';
 $postNamespace = 'App\Http\Controllers\PostController@';
 $followNamespace = 'App\Http\Controllers\FollowController@';
 
@@ -26,25 +26,25 @@ Route::get('index', $postNamespace . 'no_user_index');
 
 Route::get('posts', $postNamespace . 'index');
 
-Route::get('user-top', $userNamespace . 'user_top');
+Route::get('user-top', $personNamespace . 'user_top');
 
-Route::get('new', $userNamespace . 'user_new');
+Route::get('new', $personNamespace . 'user_new');
 
 //Route::post('new-login', $userNamespace . 'user_create');
 
-Route::post('new-top', $userNamespace . 'user_new_post');
+Route::post('new-top', $personNamespace . 'user_new_post');
 
-Route::get('login', $userNamespace . 'user_login');
+Route::get('login', $personNamespace . 'user_login');
 
-Route::post('login-top', $userNamespace . 'user_login_post');
+Route::post('login-top', $personNamespace . 'user_login_post');
 
-Route::get('pr-update', $userNamespace . 'pr_update');
+Route::get('pr-update', $personNamespace . 'pr_update');
 
-Route::post('pr-update-top', $userNamespace . 'pr_update_post');
+Route::post('pr-update-top', $personNamespace . 'pr_update_post');
 
-Route::get('update', $userNamespace . 'user_update');
+Route::get('update', $personNamespace . 'user_update');
 
-Route::post('user-update-top', $userNamespace . 'user_update_post');
+Route::post('user-update-top', $personNamespace . 'user_update_post');
 
 ////////////////////募集文投稿/////////////////////
 Route::get('post-new', $postNamespace . 'post_new');
@@ -57,7 +57,6 @@ Route::post('post-single-{id?}', $postNamespace . 'fav_update');
 
 Route::get('user-page/{person_id?}', $postNamespace . 'user_page');
 
-Route::get('test', $userNamespace . 'test');
-Auth::routes();
+Route::get('test',  'App\Http\Controllers\TestController@test');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

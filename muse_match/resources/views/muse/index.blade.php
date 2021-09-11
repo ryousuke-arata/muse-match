@@ -2,16 +2,20 @@
 <html lang="ja">
 <head>
     @include('components.head')
+    @php
+          $keys = array_keys($fav_counts);
+          if(isset($keys[1])) {
+             $key = max($keys);
+          } else {
+              $key = $keys;
+          }
+          $count = 0;
+    @endphp
 </head>
 <body>
-    <header>
-        @include('components.user-header')
-        @php
-          $keys = array_keys($fav_counts);
-          $key = max($keys);
-          $count = 0;
-        @endphp
-    </header>
+   
+    @include('components.user-header')
+    
     
     <div class="posts-area">
     @foreach ($posts as $post)

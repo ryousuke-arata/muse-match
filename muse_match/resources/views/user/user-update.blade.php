@@ -7,7 +7,7 @@
 @section('form')
   <main>
     <div class="form-area">
-      <form action="https://muse-match.hitomisiri-riara.com/user-update-top" method="post">
+      <form action="http://localhost:81/muse_match/public/user-update-top" method="post">
         @csrf
         <table>
           <tr>
@@ -23,13 +23,12 @@
               <td><input id="name-form" type="text" name="name" value="{{$session->name}}"></td>
           </tr>
           <tr>
-              <th>楽器</th>
-              <td><input id="ins-form" type="text" name="ins" value="{{$session->ins}}"></td>
-          </tr>
-          <tr>
             <th></th>
             <td><input type="submit" class="btn" value="登録" name="add"></td>
           </tr>
         </table>
 @endsection
-@include('components.user-footer')
+
+@section('footer')
+    @include('components.user-footer')
+@endsection
