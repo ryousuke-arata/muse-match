@@ -9,7 +9,7 @@
     <div class="posts-area">
        <div class="post-item">
           <div class="post-user-id">
-              <h2><a href="https://muse.hitomisiri-riara.com/{{$post->person_id}}">{{$post->person_name}}</a></h2>
+              <h2><a href="https://muse.hitomisiri-riara.com/user-page/{{$post->person_id}}">{{$post->person_name}}</a></h2>
           </div>
           <div class="post-title">
               <h3><span>タイトル： </span>{{$post->title}}</h3>
@@ -32,7 +32,7 @@
             <form action= "https://muse.hitomisiri-riara.com/post-single-{{$post->id}}" method="post">
               @csrf
                 <input type="hidden" name="fav_count" value="{{$fav->fav_count}}">
-                <input class="fav-btn" type="image" src="../public/storage/ハートのマーク.png" alt="いいねの数">
+                <input class="fav-btn" type="image" src="../public/storage/ハートのマーク.png" alt="{{$fav->fav_count}}">
             </form>
             <p>{{$fav->fav_count}}</p>
 

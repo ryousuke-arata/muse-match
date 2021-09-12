@@ -41,7 +41,7 @@
                 <p class="updated-at">{{$post->updated_at}}</p>
             </div>
             <div class="fav-area">
-                <img src="../public/storage/ハートのマーク.png" alt="いいねの数">
+                <img src="../public/storage/ハートのマーク.png" alt="{{$fav_counts[$count]}}">
                 <p>{{$fav_counts[$count]}}</p>
             </div>
         </div>

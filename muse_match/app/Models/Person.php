@@ -44,7 +44,7 @@ class Person extends Model
     protected $primaryKey = 'id';//プライマリキーの指定
     protected $keyType = 'text';//プライマリキーの型指定
 
-
+    ////////////////データベースにユーザー情報登録///////////////////////////////////////
     public static function createSave($request, $self) 
     {
         $form = $request->all();
@@ -58,7 +58,9 @@ class Person extends Model
         session()->put('login_user', $data);
 
     }
+    /////////////////////////////////////
 
+    //////////////データベースからユーザー情報を検索//////////////////////////////
     public static function loginUser($request)
     {
         $form = $request->all();
@@ -70,7 +72,9 @@ class Person extends Model
         session()->put('user_posts', $data->posts);
         return $data;
     }
+    ///////////////////////////////////////////
 
+    ///////////////////お気に入りされた数を取得//////////////////////////////////////////////
     public static function loginFavCount($request)
     {
         $fav_counts = [];
@@ -83,7 +87,9 @@ class Person extends Model
 
         return $fav_counts;
     }
+    ////////////////////////////////////////////////
 
+    ////////////////ユーザー情報の更新///////////////////////////////////////
     public static function dataUpdate($request) 
     {
         $session = session()->get('login_user');
@@ -109,7 +115,9 @@ class Person extends Model
         }
         session()->put('login_user', $data);
     }
+    ////////////////////////////////////////////////////////////////////
 
+    /////////////////////////ログインしてなければログインページに移行する機能//////////////////////////////////////////
     public static function loginCheck($session, $request) {
         if($session == NULL) {
             return view("user.user-login", ["url", $request->url()]);

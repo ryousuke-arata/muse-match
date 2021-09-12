@@ -44,7 +44,7 @@ class PersonController extends Controller
     }
     //////////////////
 
-    ////////////経歴・自己PR//////////////////////////
+    ////////////自己PR//////////////////////////
     public function pr_update(Request $request)
     {
         $session = session()->get('login_user');
@@ -78,6 +78,7 @@ class PersonController extends Controller
     }
     ////////////
 
+    /////////////ユーザーページ
     public function user_top(Request $request)
     {
         $session = session()->get('login_user');

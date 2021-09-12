@@ -9,6 +9,7 @@ use App\Models\Follow;
 
 class PostController extends Controller
 {
+    ////////////////非会員用の投稿一覧ページ
     public function no_user_index(Request $request)
     {
         $url = $request->url();
@@ -16,9 +17,10 @@ class PostController extends Controller
         $fav_counts = Post::indexFavGet($posts);
         $data = array($posts, $fav_counts);
         return view('muse.index', ['posts' => $posts, 'url' => $url, 'fav_counts' => $fav_counts]);
-        /*return view('test.test', ['data' => $data]);*/
     }
+    ///////////////////////////////////
 
+    ////////////////会員用の投稿一覧ページ
     public function index(Request $request)
     {
         $url = $request->url();
@@ -27,7 +29,6 @@ class PostController extends Controller
         $fav_counts = Post::indexFavGet($posts);
         $data = array($posts, $fav_counts);
         return view('muse.index', ['session' => $session,'posts' => $posts, 'url' => $url, 'fav_counts' => $fav_counts]);
-        /*return view('test.test', ['data' => $data]);*/
     }
 
 //////////////////////募集文投稿/////////////////////////////
@@ -57,6 +58,7 @@ class PostController extends Controller
     }
 ///////////////////////////////////////////////////////////
 
+////////////////////いいね更新
     public function fav_update(Request $request, $id)
     {
         $url = $request->url();
@@ -66,14 +68,14 @@ class PostController extends Controller
     }
 
 //////////////////////募集文表示ページからユーザーページへアクセス/////////////////////////////
-    public function user_page(Request $request, $person_id)
-    {
-        $session = session()->get('login_user');
-        $url = $request->url();
-        $user = Post::userPageGet($person_id);
-        $posts = Post::userPostsGet($person_id);
-        return view('user.user-top', ['session' => $user, 'posts' => $posts, 'url' => $url]);
-    }
+public function user_page(Request $request, $person_id)
+{
+    $session = session()->get('login_user');
+    $url = $request->url();
+    $user = Post::userPageGet($person_id);
+    $posts_info = Post::userPostsGet($person_id);
+    return view('user.user-top', ['session' => $user, 'posts' => $posts_info['posts'], 'url' => $url, 'fav_counts' => $posts_info['favs']]);
+}
 ///////////////////////////////////////////////////////////////////////////////
     //
 }
