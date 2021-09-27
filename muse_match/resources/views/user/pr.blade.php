@@ -8,6 +8,11 @@
     @parent
     @section('form')
         @section('action', 'https://muse.hitomisiri-riara.com/pr-update-top')
+        @error('pr')
+            <tr>
+                <td style="color: red;">{{$message}}</td>
+            </tr>
+        @enderror
         <tr>
             <th>自己PR</th>
             <td><textarea name="pr" id="pr" cols="30" rows="10">@isset($session->pr){{$session->pr}}@endisset</textarea>

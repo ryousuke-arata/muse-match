@@ -41,7 +41,6 @@ class Post extends Model
     }
     //////////////////////////////////////
 
-    ////////////いいね機能/////////////////////
     public static function favUpdate($request, $id)
     {
         DB::table('favs')->where('post_id', $id)->update(['fav_count' => $request->fav_count + 1]);
@@ -57,7 +56,6 @@ class Post extends Model
         }
         return $fav_count;
     }
-    /////////////////////////////////////////
     
      //////////////投稿からのユーザー情報表示//////////////////
     public static function userPageGet($person_id)

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Person;
+use App\Http\Requests\PersonRequest;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\PrRequest;
+use App\Http\Requests\UpdateRequest;
 
 class PersonController extends Controller
 {
@@ -16,7 +20,7 @@ class PersonController extends Controller
         return view('user.user-new', ['url' => $url, 'session' => $session]);
     }
 
-    public function user_new_post(Request $request)
+    public function user_new_post(PersonRequest $request)
     {
         $url = $request->url();
         $person = new Person;
@@ -30,10 +34,11 @@ class PersonController extends Controller
     public function user_login(Request $request) 
     {
         $url = $request->url();
+        session()->forget('login_user');
         return view('user.user-login', ['url' => $url]);
     }
 
-    public function user_login_post(Request $request)
+    public function user_login_post(LoginRequest $request)
     {
         $url = $request->url();
         $data = Person::loginUser($request);
@@ -44,20 +49,20 @@ class PersonController extends Controller
     }
     //////////////////
 
-    ////////////自己PR//////////////////////////
+    ////////////経歴・自己PR//////////////////////////
     public function pr_update(Request $request)
     {
         $session = session()->get('login_user');
-        $next = Person::sessionCheck('user.pr', $request, $session, null);
-        return $next;
+        return view('user.pr', ['session' => $session, 'url' => $request->url()]);
     }
 
-    public function pr_update_post(Request $request)
+    public function pr_update_post(PrRequest $request)
     {
         Person::dataUpdate($request);
         $session = session()->get('login_user');
-        $next = Person::sessionCheck('user.user-top', $request, $session);
-        return $next;
+        $posts = Person::postsGet($session);
+        $fav_counts = Person::loginFavCount($session);
+        return view('user.user-top', ['session' => $session, 'url' => $request->url(), 'posts' => $posts,'fav_counts' => $fav_counts]);
     }
     ///////////////////////
 
@@ -65,25 +70,25 @@ class PersonController extends Controller
     public function user_update(Request $request)
     {
         $session = session()->get('login_user');
-        $next = Person::sessionCheck('user.user-update', $request, $session);
-        return $next;
+        return view('user.user-update', ['url' => $request->url(), 'session' => $session]);
     }
 
-    public function user_update_post(Request $request)
+    public function user_update_post(UpdateRequest $request)
     {
         Person::dataUpdate($request);
         $session = session()->get('login_user');
-        $next = Person::sessionCheck('user.user-top', $request, $session);
-        return $next;
+        $posts = Person::postsGet($session);
+        $fav_counts = Person::loginFavCount($session);
+        return view('user.user-top', ['session' =>$session, 'url' => $request->url(), 'posts' => $posts, 'fav_counts' => $fav_counts]);
     }
     ////////////
 
-    /////////////ユーザーページ
     public function user_top(Request $request)
     {
         $session = session()->get('login_user');
-        $next = Person::sessionCheck('user.user-top', $request, $session);
-        return $next;
+        $posts = Person::postsGet($session);
+        $fav_counts = Person::loginFavCount($session);
+        return view('user.user-top', ['session' =>$session, 'url' => $request->url(), 'posts' => $posts, 'fav_counts' => $fav_counts]);
     }
     
 }

@@ -1,7 +1,7 @@
 
 <header>
     <h1 class="header-logo">Muse Match</h1>
-    @if ($url == 'https://muse.hitomisiri-riara.com/new' or $url == 'https://https://muse.hitomisiri-riara.com/login')
+    @if ($url == 'https://muse.hitomisiri-riara.com/new' or $url == 'https://muse.hitomisiri-riara.com/login')
       <div class="container">
         <li class="user-hednav"><a href="{{$link}}">{{$text}}</a></li>
       </div>

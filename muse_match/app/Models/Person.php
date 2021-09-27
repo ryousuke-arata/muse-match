@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
+use App\Http\Controllers\PersonController;
+use Validator;
 
 class Person extends Model
 {
@@ -44,7 +46,7 @@ class Person extends Model
     protected $primaryKey = 'id';//プライマリキーの指定
     protected $keyType = 'text';//プライマリキーの型指定
 
-    ////////////////データベースにユーザー情報登録///////////////////////////////////////
+
     public static function createSave($request, $self) 
     {
         $form = $request->all();
@@ -58,9 +60,7 @@ class Person extends Model
         session()->put('login_user', $data);
 
     }
-    /////////////////////////////////////
 
-    //////////////データベースからユーザー情報を検索//////////////////////////////
     public static function loginUser($request)
     {
         $form = $request->all();
@@ -72,9 +72,13 @@ class Person extends Model
         session()->put('user_posts', $data->posts);
         return $data;
     }
-    ///////////////////////////////////////////
 
-    ///////////////////お気に入りされた数を取得//////////////////////////////////////////////
+    public static function postsGet($request)
+    {
+        $data = self::with('posts')->where('mail', $request->mail)->first();
+        return $data->posts;
+    }
+
     public static function loginFavCount($request)
     {
         $fav_counts = [];
@@ -87,9 +91,7 @@ class Person extends Model
 
         return $fav_counts;
     }
-    ////////////////////////////////////////////////
 
-    ////////////////ユーザー情報の更新///////////////////////////////////////
     public static function dataUpdate($request) 
     {
         $session = session()->get('login_user');
@@ -115,49 +117,11 @@ class Person extends Model
         }
         session()->put('login_user', $data);
     }
-    ////////////////////////////////////////////////////////////////////
 
-    /////////////////////////ログインしてなければログインページに移行する機能//////////////////////////////////////////
     public static function loginCheck($session, $request) {
         if($session == NULL) {
             return view("user.user-login", ["url", $request->url()]);
         }
         exit();
     }
-
-    public static function sessionCheck($link, $request, $session)
-    {
-      
-      if(isset($session)) {
-        $id = self::with('posts')->where('id', $session->id)->where('mail', $session->mail)->first();
-        $posts = $id->posts;
-      } elseif($session == null) {
-        return view('user.user-login', ['url' => $request->url()]);
-        exit;
-      }
-      if(isset($posts)) {
-        $fav_counts = [];
-        foreach($posts as $post) {
-            $fav = DB::table('favs')->where('post_id', $post->id)->first();
-            $fav_counts[] += $fav->fav_count;
-        }
-        $param = [
-            'session' => $session,
-            'url' => $request->url(),
-            'posts' => $posts,
-            'fav_counts' => $fav_counts,
-        ];
-        return view($link, $param);
-
-      } elseif($posts == null) {
-        $param = [
-            'session' => $session,
-            'url' => $request->url(),
-            'posts' => $posts,
-            'fav_counts' => null,
-        ];
-        return view($link, $param);
-      }
-    }
-
 }

@@ -12,19 +12,21 @@
           <form action="https://muse.hitomisiri-riara.com/login-top" method="post">
             @csrf
             <table>
-              @if (count($errors))
-                  @foreach ($errors->all() as $error)
-                      <tr>
-                        <td>{{$error}}</td>
-                      </tr>
-                  @endforeach
-              @endif
-              
+              @error('mail')
+                <tr>
+                  <td style='color: red;'>{{$message}}</td>
+                </tr>
+              @enderror
               <tr>
                 <th>メールアドレス: </th>
                 <td><input id="email-form" type="text" name="mail" value="{{old('mail')}}"></td>
               </tr>
         
+              @error('pass')
+                <tr>
+                  <td style='color: red;'>{{$message}}</td>
+                </tr>
+              @enderror
               <tr>
                 <th>パスワード: </th>
                 <td><input id="pass-form" type="text" name="pass" value="{{old('pass')}}"></td>
