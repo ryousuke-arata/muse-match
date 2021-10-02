@@ -7,7 +7,7 @@
 @section('form')
   <main>
     <div class="form-area">
-      <form action="https://muse.hitomisiri-riara.com/user-update-top" method="post">
+      <form action="http://localhost:81/muse_match/public/user-update-top" method="post">
         @csrf
         <table>
 
@@ -42,11 +42,10 @@
           </tr>
           <tr>
             <th></th>
-            <td><input type="submit" class="btn" value="登録" name="add"></td>
+            <td><input type="submit" class="sent" value="登録" name="add"></td>
           </tr>
         </table>
-@endsection
-
-@section('footer')
-    @include('components.user-footer')
+      </form>
+    </div>
+  </main>
 @endsection

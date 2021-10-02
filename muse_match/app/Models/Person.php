@@ -75,7 +75,7 @@ class Person extends Model
 
     public static function postsGet($request)
     {
-        $data = self::with('posts')->where('mail', $request->mail)->first();
+        $data = self::with('posts')->where('id', $request->id)->first();
         return $data->posts;
     }
 
@@ -96,7 +96,7 @@ class Person extends Model
     {
         $session = session()->get('login_user');
 
-        if($request->url() == 'https://muse.hitomisiri-riara.com/user-update-top') {
+        if($request->url() == 'http://localhost:81/muse_match/public/user-update-top') {
             $userParam = [
                 'id' => $request->id,
                 'mail' => $request->mail,
@@ -123,5 +123,40 @@ class Person extends Model
             return view("user.user-login", ["url", $request->url()]);
         }
         exit();
+    }
+
+    public static function sessionCheck($link, $request, $session)
+    {
+      
+      if(isset($session)) {
+        $id = self::with('posts')->where('id', $session->id)->where('mail', $session->mail)->first();
+        $posts = $id->posts;
+      } elseif($session == null) {
+        return view('user.user-login', ['url' => $request->url()]);
+        exit;
+      }
+      if(isset($posts)) {
+        $fav_counts = [];
+        foreach($posts as $post) {
+            $fav = DB::table('favs')->where('post_id', $post->id)->first();
+            $fav_counts[] += $fav->fav_count;
+        }
+        $param = [
+            'session' => $session,
+            'url' => $request->url(),
+            'posts' => $posts,
+            'fav_counts' => $fav_counts,
+        ];
+        return view($link, $param);
+
+      } elseif($posts == null) {
+        $param = [
+            'session' => $session,
+            'url' => $request->url(),
+            'posts' => $posts,
+            'fav_counts' => null,
+        ];
+        return view($link, $param);
+      }
     }
 }

@@ -23,17 +23,23 @@ $followNamespace = 'App\Http\Controllers\FollowController@';
 
 Route::get('/', $postNamespace . 'no_user_index');
 
+Route::get('/', $postNamespace . 'fav_update_index');
+
+Route::get('#', $postNamespace . 'fav_update_index');
+
 Route::get('posts', $postNamespace . 'index')->middleware('checkLogin');
 
-Route::get('user-top', $personNamespace . 'user_top');
+Route::get('posts', $postNamespace . 'fav_update_posts')->middleware('checkLogin');
+
+Route::get('user-top', $personNamespace . 'user_top')->middleware('checkLogin');
 
 Route::get('new', $personNamespace . 'user_new');
 
-Route::post('new-top', $personNamespace . 'user_new_post');
+Route::post('new-top', $personNamespace . 'user_new_post')->middleware('checkData');
 
 Route::get('login', $personNamespace . 'user_login');
 
-Route::post('login-top', $personNamespace . 'user_login_post')->middleware('checkLogin');
+Route::post('login-top', $personNamespace . 'user_login_post')->middleware('checkLoginData');
 
 Route::get('pr-update', $personNamespace . 'pr_update')->middleware('checkLogin');
 
@@ -48,8 +54,14 @@ Route::get('post-new', $postNamespace . 'post_new')->middleware('checkLogin');
 
 Route::post('new-posts', $postNamespace . 'post_new_post')->middleware('checkLogin');
 
+Route::get('noUser/post-single-{id?}', $postNamespace . 'noUser_single_post');
+
 Route::get('post-single-{id?}', $postNamespace . 'single_post');
 
 Route::post('post-single-{id?}', $postNamespace . 'fav_update');
 
 Route::get('user-page/{person_id?}', $postNamespace . 'user_page');
+
+Route::get('noUser/user-page/{person_id?}', $postNamespace . 'noUser_page');
+
+Route::get('test', $personNamespace . 'test');

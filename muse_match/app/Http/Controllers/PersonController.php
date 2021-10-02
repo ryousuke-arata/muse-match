@@ -25,8 +25,8 @@ class PersonController extends Controller
         $url = $request->url();
         $person = new Person;
         Person::createSave($request, $person);
-        $session = session()->get('login_user');
-        return view('user.user-top', ['session' => $session, 'posts' => null, 'url' => $url, 'fav_counts' => null]);
+        $user = session()->get('login_user');
+        return view('user.user-top', ['user' => $user,'session' => $user, 'posts' => null, 'url' => $url, 'fav_counts' => null]);
     }
     ///////////////////////////
 
@@ -42,10 +42,10 @@ class PersonController extends Controller
     {
         $url = $request->url();
         $data = Person::loginUser($request);
-        $session = session()->get('login_user');
+        $user = session()->get('login_user');
         $posts = $data->posts;
         $fav_counts = Person::loginFavCount($request);
-        return view('user.user-top', ['session' => $session, 'posts' => $posts, 'url' => $url, 'fav_counts' => $fav_counts]);
+        return view('user.user-top', ['user' => $user, 'session' => $user, 'posts' => $posts, 'url' => $url, 'fav_counts' => $fav_counts]);
     }
     //////////////////
 
@@ -59,10 +59,10 @@ class PersonController extends Controller
     public function pr_update_post(PrRequest $request)
     {
         Person::dataUpdate($request);
-        $session = session()->get('login_user');
-        $posts = Person::postsGet($session);
-        $fav_counts = Person::loginFavCount($session);
-        return view('user.user-top', ['session' => $session, 'url' => $request->url(), 'posts' => $posts,'fav_counts' => $fav_counts]);
+        $user = session()->get('login_user');
+        $posts = Person::postsGet($user);
+        $fav_counts = Person::loginFavCount($user);
+        return view('user.user-top', ['user' => $user, 'session' => $user, 'url' => $request->url(), 'posts' => $posts,'fav_counts' => $fav_counts]);
     }
     ///////////////////////
 
@@ -76,19 +76,22 @@ class PersonController extends Controller
     public function user_update_post(UpdateRequest $request)
     {
         Person::dataUpdate($request);
-        $session = session()->get('login_user');
-        $posts = Person::postsGet($session);
-        $fav_counts = Person::loginFavCount($session);
-        return view('user.user-top', ['session' =>$session, 'url' => $request->url(), 'posts' => $posts, 'fav_counts' => $fav_counts]);
+        $user = session()->get('login_user');
+        $posts = Person::postsGet($user);
+        $fav_counts = Person::loginFavCount($user);
+        return view('user.user-top', ['user' => $user, 'session' =>$user, 'url' => $request->url(), 'posts' => $posts, 'fav_counts' => $fav_counts]);
     }
     ////////////
 
     public function user_top(Request $request)
     {
-        $session = session()->get('login_user');
-        $posts = Person::postsGet($session);
-        $fav_counts = Person::loginFavCount($session);
-        return view('user.user-top', ['session' =>$session, 'url' => $request->url(), 'posts' => $posts, 'fav_counts' => $fav_counts]);
+        $user = session()->get('login_user');
+        $posts = Person::postsGet($user);
+        return view('user.user-top', ['user' => $user, 'session' =>$user, 'url' => $request->url(), 'posts' => $posts]);
     }
     
+    public function test() {
+        $data = Person::where('id', 'ryosan')->where('mail', 'ryosuke.arata')->exists();
+        return view('test.test', ['data' => $data]);
+    }
 }

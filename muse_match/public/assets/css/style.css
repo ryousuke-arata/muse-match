@@ -1,0 +1,293 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  top: 0;
+}
+
+@font-face {
+  font-family: 'MyFont';
+  src: url(../font/KaiseiDecol-Medium.ttf);
+}
+
+main {
+  width: 100%;
+  height: 75vh;
+  position: relative;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.container {
+  margin: 0 80px 0 80px;
+}
+
+li {
+  list-style: none;
+}
+
+th {
+  color: white;
+  text-shadow: 1px 1px #000;
+}
+
+input {
+  border: solid 2px #000;
+}
+
+input:focus {
+  border: solid 2px #fff;
+}
+
+textarea {
+  box-shadow: inset 0 0 0 2px #000;
+}
+
+textarea:focus {
+  box-shadow: none;
+}
+
+.sent {
+  text-align: center;
+  background-color: #2ddd2d;
+  border: 1px solid #87e087;
+  box-shadow: #A4A4A4 3px 3px;
+  margin-bottom: 10px;
+}
+
+.sent:hover {
+  background-color: #87e087;
+  transition: all 0.3s;
+}
+
+.sent:focus {
+  border: none;
+}
+
+footer {
+  background: linear-gradient(#6A36F3, #B6A0F0);
+  text-align: center;
+  font-size: 30px;
+  color: white;
+}
+
+.copyright {
+  font-size: 10px;
+}
+
+header {
+  background: linear-gradient(#6A36F3, #B6A0F0);
+  list-style: none;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  text-shadow: 1px 1px #000;
+  font-family: 'MyFont';
+}
+
+.header-logo {
+  text-align: center;
+  color: white;
+  font-size: 50px;
+  font-style: italic;
+  margin-top: 0;
+  font-family: 'MyFont';
+}
+
+.user-hednav {
+  text-align: center;
+}
+
+.user-hednav a {
+  font-size: 20px;
+  color: white;
+}
+
+.post-header-nav ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+.post-header-nav-item {
+  margin-right: 0;
+}
+
+.form-area {
+  overflow: hidden;
+  display: table;
+  width: 50%;
+  height: 50%;
+  border-radius: 20px;
+  background: radial-gradient(#D7D6D6, #A4A4A4);
+  box-shadow: 0 0 0 2px #444444 inset;
+  text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.form-area form {
+  width: 100%;
+  height: 100%;
+}
+
+.form-area table {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.profile-table {
+  margin: 0 auto;
+  width: 40%;
+}
+
+.profile-table tr {
+  border: 1px solid #363636;
+}
+
+.profile-table th {
+  border: solid 1px #000;
+  background-color: #6e6c6c;
+  white-space: nowrap;
+}
+
+.profile-td {
+  border: 1px solid #000;
+  width: 30%;
+}
+
+.profile-ta {
+  border: 1px solid #000;
+  word-break: break-all;
+}
+
+.posts-area, .messages-area {
+  text-align: center;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.post-item, .message-item {
+  margin-bottom: 30px;
+  border: 2px solid #994f4f;
+}
+
+.post-title {
+  border-bottom: 1px solid #000;
+  background-color: #6e6b6b;
+  color: #fff;
+}
+
+.post-parts {
+  border-bottom: 1px solid #000;
+}
+
+.parts-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.start-datetime {
+  border-bottom: 1px solid #000;
+}
+
+.post-content {
+  text-align: left;
+}
+
+.post-content p {
+  word-wrap: break-word;
+}
+
+.updated-at {
+  text-align: right;
+  color: black;
+  opacity: 0.7;
+  font-size: 10px;
+}
+
+.posts-area a {
+  text-decoration: none;
+  color: black;
+}
+
+.post-user-id a {
+  color: #f82c2c;
+}
+
+.message-create {
+  width: 40%;
+  text-align: right;
+  margin: 0 auto;
+}
+
+.message-create a {
+  text-decoration: none;
+  border: white solid 2px;
+  background-color: #e0e081;
+  color: #2929fa;
+}
+
+.messages-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.send-user {
+  border-bottom: 1px solid #000;
+}
+
+.message-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.fav-area {
+  position: relative;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.fav-btn, .fav-area img {
+  width: 24px;
+  height: auto;
+}
+
+.fav-area p {
+  position: absolute;
+  bottom: -30%;
+  right: 1.5%;
+  color: white;
+  cursor: pointer;
+}
+
+.receive-messages-area {
+  text-align: center;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.fav-btn {
+  background-image: url("../public/storage/ハートのマーク.png");
+}
+
+.copyright p {
+  margin-bottom: 0;
+}
+/*# sourceMappingURL=style.css.map */

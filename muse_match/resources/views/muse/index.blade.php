@@ -3,13 +3,14 @@
 <head>
     @include('components.head')
     @php
-          $keys = array_keys($fav_counts);
-          if(isset($keys[1])) {
-             $key = max($keys);
+
+          if ($url == "http://localhost:81/muse_match/public") {
+              $single_url = "http://localhost:81/muse_match/public/noUser/post-single-";
+              $posts_url = "http://localhost:81/muse_match/public";
           } else {
-              $key = $keys;
+              $single_url = "http://localhost:81/muse_match/public/post-single-";
+              $posts_url = "http://localhost:81/muse_match/public/posts";
           }
-          $count = 0;
     @endphp
 </head>
 <body>
@@ -19,8 +20,10 @@
     
     <div class="posts-area">
     @foreach ($posts as $post)
-     @while ($count <= $key)
-      <a href="https://muse.hitomisiri-riara.com/post-single-{{$post->id}}">
+      <a href="{{$single_url}}{{$post->id}}">
+       <form method="post">
+           @csrf
+           <input type="hidden" name="fav_count" value="{{$post->fav_count}}">
         <div class="post-item">
             <div class="post-user-id">
                 <h2>{{$post->person_name}}</h2>
@@ -36,20 +39,15 @@
                 <p class="parts-title">・開催日時</p>
                 <p>{{$post->start_date}}{{$post->start_time}}</p>
             </div>
-            <div class="post-content">
-                <p>{{$post->content}}</p>
-                <p class="updated-at">{{$post->updated_at}}</p>
-            </div>
-            <div class="fav-area">
-                <img src="../public/storage/ハートのマーク.png" alt="{{$fav_counts[$count]}}">
-                <p>{{$fav_counts[$count]}}</p>
-            </div>
+            <a href="{{$posts_url}}">
+               <div class="fav-area">
+                   <img src="../public/storage/ハートのマーク.png" alt="いいねの数">
+                   <p>{{$post->fav_count}}</p>
+               </div>
+            </a>
         </div>
+       </form>
       </a>
-      @php
-          $count++
-      @endphp
-     @endwhile
     @endforeach
     </div>
 

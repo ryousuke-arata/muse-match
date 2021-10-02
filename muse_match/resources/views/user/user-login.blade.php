@@ -1,12 +1,12 @@
 @extends('layouts.users')
 
 @section('header')
-  @include('components.user-header', ['link' => 'https://muse.hitomisiri-riara.com/new', 'text' => '新規登録'])
+  @include('components.user-header', ['link' => 'http://localhost:81/muse_match/public/new', 'text' => '新規登録'])
 @endsection
 
 @section('form')
     @parent
-    @section('btn', 'ログイン')
+    @section('submit', 'ログイン')
 @endsection
 
 @section('footer')

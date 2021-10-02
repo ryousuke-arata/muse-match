@@ -6,7 +6,7 @@
 
 @section('content')
     @parent
-    @section('action', "https://muse.hitomisiri-riara.com/new-posts")
+    @section('action', "http://localhost:81/muse_match/public/new-posts")
     @section('form')
 
         @error('title')
@@ -43,10 +43,8 @@
             <th>投稿文</th>
             <td><textarea class="post-form-textarea" name="content" id="" cols="30" rows="10"></textarea></td>
         </tr>
-        <tr>
-            <td><input class="btn" type="submit" name="'add" value="投稿"></td>
-        </tr>
     @endsection
+    @section('submit', '投稿')
 @endsection
 
 @section('footer')
