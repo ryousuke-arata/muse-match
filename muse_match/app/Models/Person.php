@@ -96,7 +96,7 @@ class Person extends Model
     {
         $session = session()->get('login_user');
 
-        if($request->url() == 'http://localhost:81/muse_match/public/user-update-top') {
+        if($request->url() == 'https://muse.hitomisiri-riara.com/user-update-top') {
             $userParam = [
                 'id' => $request->id,
                 'mail' => $request->mail,

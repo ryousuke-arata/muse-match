@@ -54,7 +54,7 @@
     </div>
     @endisset
     <div class="follow-btn">
-        <form action='http://localhost:81/muse_match/public/user-page/{{$user->id}}' method="post">
+        <form action='https://muse.hitomisiri-riara.com/user-page/{{$user->id}}' method="post">
             @csrf
             <input type="submit" name="follow" hidden="{{$user->id}}" value="フォロー">
         </form>

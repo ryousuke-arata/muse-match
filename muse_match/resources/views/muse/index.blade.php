@@ -4,12 +4,12 @@
     @include('components.head')
     @php
 
-          if ($url == "http://localhost:81/muse_match/public") {
-              $single_url = "http://localhost:81/muse_match/public/noUser/post-single-";
-              $posts_url = "http://localhost:81/muse_match/public";
+          if ($url == "https://muse.hitomisiri-riara.com") {
+              $single_url = "https://muse.hitomisiri-riara.com/noUser/post-single-";
+              $posts_url = "https://muse.hitomisiri-riara.com";
           } else {
-              $single_url = "http://localhost:81/muse_match/public/post-single-";
-              $posts_url = "http://localhost:81/muse_match/public/posts";
+              $single_url = "https://muse.hitomisiri-riara.com/post-single-";
+              $posts_url = "https://muse.hitomisiri-riara.com/posts";
           }
     @endphp
 </head>

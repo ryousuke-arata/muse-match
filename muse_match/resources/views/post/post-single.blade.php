@@ -4,9 +4,9 @@
     @include('components.head')
     @php
         if (strpos($url, 'noUser')) {
-              $user_url = "http://localhost:81/muse_match/public/noUser/user-page/";
+              $user_url = "https://muse.hitomisiri-riara.com/noUser/user-page/";
           } else {
-              $user_url = "http://localhost:81/muse_match/public/user-page/";
+              $user_url = "https://muse.hitomisiri-riara.com/user-page/";
           }   
     @endphp
 </head>
@@ -34,9 +34,9 @@
               <p class="updated-at">{{$post->created_at}}</p>
           </div>
         
-        @if ($url != 'http://localhost:81/muse_match/public/new-posts')
+        @if ($url != 'https://muse.hitomisiri-riara.com/new-posts')
           <div class="fav-area">
-            <form action= "http://localhost:81/muse_match/public/post-single-{{$post->id}}" method="post">
+            <form action= "https://muse.hitomisiri-riara.com/post-single-{{$post->id}}" method="post">
               @csrf
                 <input type="hidden" name="fav_count" value="{{$post->fav_count}}">
                 <input class="fav-btn" type="image" src="../public/storage/ハートのマーク.png" alt="{{$post->fav_count}}">

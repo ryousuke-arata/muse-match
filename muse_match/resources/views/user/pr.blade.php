@@ -7,7 +7,7 @@
 @section('content')
     @parent
     @section('form')
-        @section('action', 'http://localhost:81/muse_match/public/pr-update-top')
+        @section('action', 'https://muse.hitomisiri-riara.com/pr-update-top')
         @error('pr')
             <tr>
                 <td style="color: red;">{{$message}}</td>
