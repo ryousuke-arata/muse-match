@@ -21,9 +21,9 @@ $followNamespace = 'App\Http\Controllers\FollowController@';
 
 
 
-Route::get('/', $postNamespace . 'no_user_index');
+Route::get('/', $postNamespace . 'no_user_index')->middleware('noUser');
 
-Route::get('/', $postNamespace . 'fav_update_index');
+Route::get('/', $postNamespace . 'fav_update_index')->middleware('noUser');
 
 Route::get('#', $postNamespace . 'fav_update_index');
 
@@ -63,3 +63,5 @@ Route::post('post-single-{id?}', $postNamespace . 'fav_update');
 Route::get('user-page/{person_id?}', $postNamespace . 'user_page');
 
 Route::get('noUser/user-page/{person_id?}', $postNamespace . 'noUser_page');
+
+Route::get('test', $personNamespace . 'test');

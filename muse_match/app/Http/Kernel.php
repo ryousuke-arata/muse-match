@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'checkData' => \App\Http\Middleware\CheckData::class,
         'checkLoginData' => \App\Http\Middleware\CheckLoginData::class,
         'sessionDelete' => \App\Http\Middleware\sessionDelete::class,
+        'noUser' => \App\Http\Middleware\NoUser::class,
     ];
 }
