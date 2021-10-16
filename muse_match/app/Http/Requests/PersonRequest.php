@@ -36,7 +36,7 @@ class PersonRequest extends FormRequest
     {
         return [
             'id.required' => '※IDが未入力です',
-            'mail.email' => '※メールアドレスが未入力です',
+            'mail.email' => '※メールアドレスを入力してください',
             'pass.required' => '※パスワードを設定してください',
             'name.required' => '※名前を入力してください',
         ];

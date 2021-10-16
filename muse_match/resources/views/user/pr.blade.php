@@ -10,11 +10,11 @@
         @section('action', 'https://muse.hitomisiri-riara.com/pr-update-top')
         @error('pr')
             <tr>
-                <td style="color: red;">{{$message}}</td>
+                <td class="error-message">{{$message}}</td>
             </tr>
         @enderror
         <tr>
-            <th>自己PR</th>
+            <th class="pr-title">自己PR</th>
         </tr>
         <tr>
             <td><textarea class="pr-box" name="pr" id="pr" cols="30" rows="10">@isset($session->pr){{$session->pr}}@endisset</textarea></td>

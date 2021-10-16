@@ -23,9 +23,7 @@ $followNamespace = 'App\Http\Controllers\FollowController@';
 
 Route::get('/', $postNamespace . 'no_user_index')->middleware('noUser');
 
-Route::get('/', $postNamespace . 'fav_update_index')->middleware('noUser');
-
-Route::get('#', $postNamespace . 'fav_update_index');
+Route::get('/up', $postNamespace . 'fav_index')->middleware('noUser');
 
 Route::get('posts', $postNamespace . 'index')->middleware('checkLogin');
 
@@ -58,10 +56,16 @@ Route::get('noUser/post-single-{id?}', $postNamespace . 'noUser_single_post');
 
 Route::get('post-single-{id?}', $postNamespace . 'single_post');
 
-Route::post('post-single-{id?}', $postNamespace . 'fav_update');
+Route::post('noUser/post-single-{id?}', $postNamespace . 'fav_update')->middleware('noUser');
 
-Route::get('user-page/{person_id?}', $postNamespace . 'user_page');
+Route::post('post-single-{id?}', $postNamespace . 'fav_update')->middleware('checkLogin');
 
-Route::get('noUser/user-page/{person_id?}', $postNamespace . 'noUser_page');
+Route::get('user-page/{person_id?}', $postNamespace . 'user_page')->middleware('checkLogin');
+
+Route::get('noUser/user-page/{person_id?}', $postNamespace . 'noUser_page')->middleware('noUser');
 
 Route::get('test', $personNamespace . 'test');
+
+Route::post('up', $postNamespace . 'fav_index')->middleware('noUser');
+
+Route::post('posts/up', $postNamespace . 'fav_index')->middleware('checkLogin');

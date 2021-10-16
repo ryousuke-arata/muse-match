@@ -17,40 +17,59 @@
    
     @include('components.user-header')
     
-    
+   <main>
     <div class="posts-area">
     @foreach ($posts as $post)
       <a href="{{$single_url}}{{$post->id}}">
-       <form method="post">
-           @csrf
-           <input type="hidden" name="fav_count" value="{{$post->fav_count}}">
         <div class="post-item">
-            <div class="post-user-id">
-                <h2>{{$post->person_name}}</h2>
+            <div class="post-parts">
+                <div class="parts-title">
+                    <p>・ID</p>
+                </div>
+                <div class="parts-content">
+                    <h2>{{$post->person_name}}</h2>
+                </div>
             </div>
             <div class="post-title">
-                <h3><span>タイトル： </span>{{$post->title}}</h3>
+                <div class="parts-title">
+                    <p>タイトル： </p>
+                </div>
+                <div class="parts-content">
+                    {{$post->title}}
+                </div>
             </div>
             <div class="post-parts">
-                <p class="parts-title">・開催場所</p>
-                <p>{{$post->venue}}</p>
+                <div class="parts-title">
+                    <p class="parts-title">・開催場所</p>
+                </div>
+                <div class="parts-content">
+                    <p>{{$post->venue}}</p>
+                </div>
             </div>
             <div class="post-parts">
-                <p class="parts-title">・開催日時</p>
-                <p>{{$post->start_date}}{{$post->start_time}}</p>
+                <div class="parts-title">
+                    <p class="parts-title">・開催日時</p>
+                </div>
+                <div class="parts-content">
+                    <p>{{$post->start_date}}{{$post->start_time}}</p>
+                </div>
             </div>
-            <a href="{{$posts_url}}">
-               <div class="fav-area">
-                   <img src="../public/storage/ハートのマーク.png" alt="いいねの数">
-                   <p>{{$post->fav_count}}</p>
-               </div>
-            </a>
+            <div class="fav-area">
+                <form action= "{{$posts_url}}/up" method="post">
+                    @csrf
+                      <input type="hidden" name="id" value="{{$post->id}}">
+                      <input type="hidden" name="url" value="{{$posts_url}}">
+                      <input class="fav-type-btn" type="submit" value="いいね" alt="{{$post->fav_count}}">
+                  </form>
+                  <div class="fav-btn"> 
+                      <p>{{$post->fav_count}}</p>
+                  </div>
+            </div>
         </div>
-       </form>
       </a>
     @endforeach
     </div>
-
+   </main>
     @include('components.user-footer')
 </body>
 </html>

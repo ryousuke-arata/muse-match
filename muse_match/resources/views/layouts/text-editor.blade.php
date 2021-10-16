@@ -10,7 +10,7 @@
     @show
 
     @section('content')
-    <main>
+    <main id="edit">
      <div class="form-area">
       <form action="@yield('action')" method="post">
         @csrf

@@ -5,19 +5,19 @@
 @endsection
 
 @section('form')
-<main>
+<main id="edit">
     <div class="form-area">
       <form action="https://muse.hitomisiri-riara.com/new-top" method="post">
         @csrf
-        <table>
+        <table class="profile-edit">
           @error('id')
               <tr>
-                <td style='color: red;'>{{$message}}</td>
+                <td class="error-message">{{$message}}</td>
               </tr>
           @enderror
           @if (session('re_signal') == 'id' or session('re_signal') == 'all')
               <tr>
-                <td style="color: red;">{{session('id_message')}}</td>
+                <td class="error-message">{{session('id_message')}}</td>
               </tr>
           @endif
           <tr>
@@ -27,12 +27,12 @@
 
           @error('mail')
             <tr>
-              <td style='color: red;'>{{$message}}</td>
+              <td class="error-message">{{$message}}</td>
             </tr>
           @enderror
           @if (session('re_signal') == 'mail' or session('re_signal') == 'all')
               <tr>
-                <td style="color: red;">{{session('mail_message')}}</td>
+                <td class="error-message">{{session('mail_message')}}</td>
               </tr>
           @endif
           <tr>
@@ -42,7 +42,7 @@
 
           @error('pass')
             <tr>
-              <td style='color: red;'>{{$message}}</td>
+              <td class="error-message">{{$message}}</td>
             </tr>
           @enderror
           <tr>
@@ -52,11 +52,11 @@
 
           @error('name')
             <tr>
-              <td style='color: red;'>{{$message}}</td>
+              <td class="error-message">{{$message}}</td>
             </tr>
           @enderror
           <tr>
-              <th>名前</th>
+              <th>名前: </th>
               <td><input id="name-form" type="text" name="name"></td>
           </tr>
           <tr>
@@ -65,6 +65,6 @@
           </tr>
         </table>
       </form>
+    </div>
+  </main>
 @endsection
-
-@include('components.user-footer')

@@ -15,7 +15,6 @@ class PostController extends Controller
         $url = $request->url();
         $posts = Post::all();
         $fav_counts = Post::indexFavGet($posts);
-        $data = array($posts, $fav_counts);
         return view('muse.index', ['posts' => $posts, 'url' => $url, 'fav_counts' => $fav_counts]);
     }
 
@@ -67,8 +66,9 @@ class PostController extends Controller
     {
         $url = $request->url();
         Post::favUpdate($request);
+        $session = session()->get('login_user');
         $post = Post::where('id', $id)->first();
-        return view('post.post-single', ['url' => $url, 'post' => $post]);
+        return view('post.post-single', ['url' => $url, 'post' => $post, 'session' => $session]);
     }
 
     public function fav_update_index(Request $request) {
@@ -104,5 +104,10 @@ class PostController extends Controller
         return view('user.user-top', ['user' => $user, 'posts' => $posts, 'url' => $url]);
     }
 ///////////////////////////////////////////////////////////////////////////////
+
+public function fav_index(Request $request) {
+    $post = Post::where('id', $request->id)->increment('fav_count');
+    return view('upload.upload', ['redirect' => $request->url]);
+}
     //
 }

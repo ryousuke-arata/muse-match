@@ -7,20 +7,20 @@
     @yield('header')
 
     @section('form')
-      <main>
+      <main id="edit">
         <div class="form-area">
           <form action="https://muse.hitomisiri-riara.com/login-top" method="post">
             @csrf
-            <table>
+            <table class="profile-edit">
               @if (session('re_signal') == 'error')
                   <tr>
-                    <td style="color: red;">{{session('re_message')}}</td>
+                    <td class="error-message">{{session('re_message')}}</td>
                   </tr>
               @endif
               
               @error('mail')
                 <tr>
-                  <td style='color: red;'>{{$message}}</td>
+                  <td class="error-message">{{$message}}</td>
                 </tr>
               @enderror
               <tr>
@@ -30,7 +30,7 @@
         
               @error('pass')
                 <tr>
-                  <td style='color: red;'>{{$message}}</td>
+                  <td class="error-message">{{$message}}</td>
                 </tr>
               @enderror
               <tr>

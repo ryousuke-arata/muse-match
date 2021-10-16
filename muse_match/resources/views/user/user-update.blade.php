@@ -5,7 +5,7 @@
 @endsection
 
 @section('form')
-  <main>
+  <main id="edit">
     <div class="form-area">
       <form action="https://muse.hitomisiri-riara.com/user-update-top" method="post">
         @csrf
@@ -13,7 +13,7 @@
 
           @error('id')
               <tr>
-                <td style="color: red;">{{$message}}</td>
+                <td class="error-message">{{$message}}</td>
               </tr>
           @enderror
           <tr>
@@ -23,7 +23,7 @@
 
           @error('mail')
               <tr>
-                <td style="color: red;">{{$message}}</td>
+                <td class="error-message">{{$message}}</td>
               </tr>
           @enderror
           <tr>
@@ -33,7 +33,7 @@
 
           @error('name')
               <tr>
-                <td style="color: red;">{{$message}}</td>
+                <td class="error-message">{{$message}}</td>
               </tr>
           @enderror
           <tr>
